@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Ferrari 488 GTB",
+    "brand": "Ferrari",
+    "year": 2020,
+    "type": "Coupe",
+    "price_per_day": 15000000,
+    "status": "available"
+  },
+  {
+    "id": 2,
+    "name": "Toyota Camry",
+    "brand": "Toyota",
+    "year": 2021,
+    "type": "Sedan",
+    "price_per_day": 700000,
+    "status": "available"
+  },
+  {
+    "id": 3,
+    "name": "Toyota Fortuner",
+    "brand": "Toyota",
+    "year": 2022,
+    "type": "SUV",
+    "price_per_day": 900000,
+    "status": "available"
+  },
+  {
+    "id": 4,
+    "name": "Honda Jazz",
+    "brand": "Honda",
+    "year": 2020,
+    "type": "Hatchback",
+    "price_per_day": 500000,
+    "status": "available"
+  },
+  {
+    "id": 5,
+    "name": "BMW Z4",
+    "brand": "BMW",
+    "year": 2021,
+    "type": "Convertible",
+    "price_per_day": 12000000,
+    "status": "available"
+  },
+  {
+    "id": 6,
+    "name": "Ford Ranger",
+    "brand": "Ford",
+    "year": 2019,
+    "type": "Pickup",
+    "price_per_day": 800000,
+    "status": "available"
+  },
+  {
+    "id": 7,
+    "name": "Toyota Alphard",
+    "brand": "Toyota",
+    "year": 2023,
+    "type": "Minivan",
+    "price_per_day": 1500000,
+    "status": "available"
+  },
+  {
+    "id": 8,
+    "name": "Bugatti Chiron",
+    "brand": "Bugatti",
+    "year": 2022,
+    "type": "Hypercar",
+    "price_per_day": 50000000,
+    "status": "available"
+  },
+  {
+    "id": 9,
+    "name": "Tesla Model S",
+    "brand": "Tesla",
+    "year": 2023,
+    "type": "Electric",
+    "price_per_day": 2000000,
+    "status": "available"
+  },
+  {
+    "id": 10,
+    "name": "Rolls-Royce Phantom",
+    "brand": "Rolls-Royce",
+    "year": 2022,
+    "type": "Luxury",
+    "price_per_day": 30000000,
+    "status": "available"
+  }
+]
