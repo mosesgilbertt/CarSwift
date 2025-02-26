@@ -1,6 +1,6 @@
 class Controller {
   static async test(req, res) {
-    res.json({ message: "Hello World!" });
+    res.json({ message: "Car Swift ini bosss!!!!" });
   }
 }
 
