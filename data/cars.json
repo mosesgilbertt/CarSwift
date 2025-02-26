@@ -5,6 +5,7 @@
     "brand": "Ferrari",
     "year": 2020,
     "type": "Coupe",
+    "image": "https://i.pinimg.com/736x/f1/6f/25/f16f2598507bcecd8f76832080bee4c6.jpg",
     "price_per_day": 15000000,
     "status": "available"
   },
@@ -14,6 +15,7 @@
     "brand": "Toyota",
     "year": 2021,
     "type": "Sedan",
+    "image": "https://i.pinimg.com/736x/2d/95/5c/2d955c283f41d75ff2cbf907e1227e2e.jpg",
     "price_per_day": 700000,
     "status": "available"
   },
@@ -23,6 +25,7 @@
     "brand": "Toyota",
     "year": 2022,
     "type": "SUV",
+    "image": "https://i.pinimg.com/736x/f1/13/86/f11386c8f9de0c1573cc37df9940f282.jpg",
     "price_per_day": 900000,
     "status": "available"
   },
@@ -32,6 +35,7 @@
     "brand": "Honda",
     "year": 2020,
     "type": "Hatchback",
+    "image": "https://i.pinimg.com/736x/e5/8a/cb/e58acb689c523d5010399984fddabfcc.jpg",
     "price_per_day": 500000,
     "status": "available"
   },
@@ -41,6 +45,7 @@
     "brand": "BMW",
     "year": 2021,
     "type": "Convertible",
+    "image": "https://i.pinimg.com/736x/6f/f1/fd/6ff1fd87b80e5aa4113412bec4597fd9.jpg",
     "price_per_day": 12000000,
     "status": "available"
   },
@@ -50,6 +55,7 @@
     "brand": "Ford",
     "year": 2019,
     "type": "Pickup",
+    "image": "https://i.pinimg.com/736x/1e/15/17/1e1517db1c8b2850552ec4adad42845e.jpg",
     "price_per_day": 800000,
     "status": "available"
   },
@@ -59,6 +65,7 @@
     "brand": "Toyota",
     "year": 2023,
     "type": "Minivan",
+    "image": "https://i.pinimg.com/736x/b8/ab/50/b8ab50b38b5d520223087f500a4a1717.jpg",
     "price_per_day": 1500000,
     "status": "available"
   },
@@ -68,6 +75,7 @@
     "brand": "Bugatti",
     "year": 2022,
     "type": "Hypercar",
+    "image": "https://i.pinimg.com/474x/1f/47/0a/1f470ae6240c233ede9fef3c348863af.jpg",
     "price_per_day": 50000000,
     "status": "available"
   },
@@ -77,6 +85,7 @@
     "brand": "Tesla",
     "year": 2023,
     "type": "Electric",
+    "image": "https://i.pinimg.com/736x/49/a8/a8/49a8a8a36efc16fd11638c544cda64e9.jpg",
     "price_per_day": 2000000,
     "status": "available"
   },
@@ -86,6 +95,7 @@
     "brand": "Rolls-Royce",
     "year": 2022,
     "type": "Luxury",
+    "image": "https://i.pinimg.com/736x/ff/6b/36/ff6b36593801c1c3f17ae8304ec6caa7.jpg",
     "price_per_day": 30000000,
     "status": "available"
   }

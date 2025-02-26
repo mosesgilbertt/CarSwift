@@ -3,7 +3,7 @@ const { signToken } = require("../helpers/jwt");
 const { User } = require("../models");
 
 class UserController {
-  static async createUser(req, res) {
+  static async createUser(req, res, next) {
     try {
       const user = await User.create(req.body);
 
@@ -12,41 +12,32 @@ class UserController {
         email: user.email,
       });
     } catch (error) {
-      if (
-        error.name === "SequelizeValidationError" ||
-        error.name === "SequelizeUniqueConstraintError"
-      ) {
-        res.status(400).json({ message: error.errors[0].message });
-      } else {
-        res.status(500).json({ message: "Internal Server Error" });
-      }
+      next(error);
     }
   }
 
-  static async login(req, res) {
-    const { email, password } = req.body;
-    if (!email || !password) {
-      res.status(400).json({ message: "Email and Password are required" });
-      return;
-    }
+  static async login(req, res, next) {
     try {
+      const { email, password } = req.body;
+      if (!email || !password) {
+        throw { status: 400, message: "Email and Password are required" };
+      }
+
       const user = await User.findOne({ where: { email } });
       if (!user) {
-        res.status(401).json({ message: "Email or Password is incorrect" });
-        return;
+        throw { status: 401, message: "Email or Password is incorrect" };
       }
 
       const isValidPassword = comparePassword(password, user.password);
       if (!isValidPassword) {
-        res.status(401).json({ message: "Email or Password is incorrect" });
-        return;
+        throw { status: 401, message: "Email or Password is incorrect" };
       }
 
       const access_token = signToken({ id: user.id });
 
       res.json({ access_token });
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error" });
+      next(error);
     }
   }
 }
