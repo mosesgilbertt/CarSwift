@@ -63,6 +63,18 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Image is required",
+          },
+          notEmpty: {
+            msg: "Image is required",
+          },
+        },
+      },
       price_per_day: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -75,23 +87,15 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      status: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "Status is required",
-          },
-          notEmpty: {
-            msg: "Status is required",
-          },
-        },
-      },
+      status: DataTypes.STRING,
     },
     {
       sequelize,
       modelName: "Car",
     }
   );
+  Car.beforeCreate((car) => {
+    car.status = "available";
+  });
   return Car;
 };
