@@ -1,25 +1,32 @@
 const express = require("express");
-const router = express.Router();
-const Controller = require("../controllers/index");
-const PublicController = require("../controllers/publicController");
-// const user = require("./user");
-const public = require("./public");
-const car = require("./car");
-const rental = require("./rental");
+const authentication = require("../middlewares/authentication");
 
+const Controller = require("../controllers/index");
 const UserController = require("../controllers/userController");
-const pub = require("./public");
+
+const publicRouter = require("./publicRouter");
+const adminRouter = require("./adminRouter");
+const userRouter = require("./userRouter");
+const carRouter = require("./carRouter");
+const rentalRouter = require("./rentalRouter");
+
+const router = express.Router();
 
 router.get("/", Controller.test);
 
 router.post("/register", UserController.createUser);
-
 router.post("/login", UserController.login);
 
-router.use("/pub", public);
+router.use("/pub", publicRouter);
 
-router.use("/cars", car);
+router.use(authentication);
 
-router.use("/rentals", rental);
+router.use("/admin", adminRouter);
+
+router.use("/profile", userRouter);
+
+router.use("/cars", carRouter);
+
+router.use("/rentals", rentalRouter);
 
 module.exports = router;
