@@ -57,7 +57,9 @@ class UserController {
         returning: true,
       });
 
-      if (!updated) throw { name: "NotFound", message: "User not found" };
+      if (!updated) {
+        throw { name: "NotFound", message: "User not found" };
+      }
 
       res.status(200).json({ message: "Profile updated successfully" });
     } catch (error) {

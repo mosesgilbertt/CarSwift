@@ -13,6 +13,11 @@ function errorHandler(error, req, res, next) {
     message = error.errors.map((e) => e.message);
   }
 
+  if (error.name === "BadRequest") {
+    statusCode = 400;
+    message = error.message || "Data not found";
+  }
+
   // ✅ Handle JWT Errors (Token Invalid / Expired)
   if (
     error.name === "JsonWebTokenError" ||
@@ -26,6 +31,11 @@ function errorHandler(error, req, res, next) {
   if (error.name === "Forbidden") {
     statusCode = 403;
     message = error.message || "You are not authorized";
+  }
+
+  if (error.name === "NotFound") {
+    statusCode = 404;
+    message = error.message || "Resource not found";
   }
 
   // ✅ Handle Unauthorized (401) - Dari middleware authentication
