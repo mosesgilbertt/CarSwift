@@ -1,16 +1,16 @@
 function errorHandler(error, req, res, next) {
-  console.error(error); // Debugging log di server
+  // console.error(error); // Debugging log di server
 
   let statusCode = error.status || 500;
   let message = error.message || "Internal Server Error";
 
-  // ✅ Handle Sequelize Validation Errors
+  // Handle Sequelize Validation Errors
   if (
     error.name === "SequelizeValidationError" ||
     error.name === "SequelizeUniqueConstraintError"
   ) {
     statusCode = 400;
-    message = error.errors.map((e) => e.message);
+    message = error.errors[0].message;
   }
 
   if (error.name === "BadRequest") {
@@ -18,16 +18,17 @@ function errorHandler(error, req, res, next) {
     message = error.message || "Data not found";
   }
 
-  // ✅ Handle JWT Errors (Token Invalid / Expired)
+  // Handle JWT Errors (Token Invalid / Expired)
   if (
     error.name === "JsonWebTokenError" ||
-    error.name === "TokenExpiredError"
+    error.name === "TokenExpiredError" ||
+    error.name === "Unauthorized"
   ) {
     statusCode = 401;
-    message = "Invalid or expired token";
+    message = error.message || "Invalid or Expired token";
   }
 
-  // ✅ Handle Forbidden (403)
+  // Handle Forbidden (403)
   if (error.name === "Forbidden") {
     statusCode = 403;
     message = error.message || "You are not authorized";
@@ -38,7 +39,7 @@ function errorHandler(error, req, res, next) {
     message = error.message || "Resource not found";
   }
 
-  // ✅ Handle Unauthorized (401) - Dari middleware authentication
+  // Handle Unauthorized (401) - Dari middleware authentication
   if (error.status === 401) {
     statusCode = 401;
     message = error.message || "Unauthorized";

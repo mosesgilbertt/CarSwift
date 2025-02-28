@@ -10,7 +10,7 @@ module.exports = {
     try {
       return jwt.verify(token, secret);
     } catch (error) {
-      throw { name: "JsonWebTokenError", message: "Invalid or expired token" };
+      throw { name: "JsonWebTokenError", message: "Invalid or Expired token" };
     }
   },
 };

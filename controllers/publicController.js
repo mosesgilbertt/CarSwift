@@ -6,7 +6,7 @@ class PublicController {
     const { type, brand, minPrice, maxPrice, page, limit, sortBy, orderBy } =
       req.query;
     try {
-      // ✅ FILTERING
+      // FILTERING
       let whereClause = { status: "available" };
 
       if (type) {
@@ -27,7 +27,7 @@ class PublicController {
         }
       }
 
-      // ✅ SORTING
+      // SORTING
       let order = [];
       if (sortBy) {
         const validColumns = ["name", "brand", "year", "price_per_day"];
@@ -36,12 +36,11 @@ class PublicController {
         }
       }
 
-      // ✅ PAGINATION
-      const pageNumber = parseInt(page) || 1; // Default page = 1
-      const pageSize = parseInt(limit) || 10; // Default limit = 10 mobil per halaman
+      //PAGINATION
+      const pageNumber = parseInt(page) || 1;
+      const pageSize = parseInt(limit) || 10;
       const offset = (pageNumber - 1) * pageSize;
 
-      // Ambil data mobil dengan limit & offset
       const { rows: cars, count: totalCars } = await Car.findAndCountAll({
         where: whereClause,
         order: order,

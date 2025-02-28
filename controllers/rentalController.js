@@ -7,7 +7,25 @@ class RentalController {
       const { CarId, rentalDate, returnDate } = req.body;
       const UserId = req.user.id;
 
-      // Cek apakah mobil tersedia
+      if (!CarId) {
+        throw { name: "BadRequest", message: "Car is required" };
+      }
+
+      if (!rentalDate) {
+        throw { name: "BadRequest", message: "Rental date is required" };
+      }
+
+      if (!returnDate) {
+        throw { name: "BadRequest", message: "Return date is required" };
+      }
+
+      if (new Date(returnDate) <= new Date(rentalDate)) {
+        throw {
+          name: "BadRequest",
+          message: "Return date must be after rental date",
+        };
+      }
+
       const car = await Car.findByPk(CarId);
       if (!car) {
         throw { name: "NotFound", message: "Car not found" };
@@ -16,7 +34,17 @@ class RentalController {
         throw { name: "BadRequest", message: "Car is not available" };
       }
 
-      // Buat rental baru
+      const existingRental = await Rental.findOne({
+        where: {
+          CarId,
+          status: "ongoing",
+        },
+      });
+
+      if (existingRental) {
+        throw { name: "BadRequest", message: "Car is already rented" };
+      }
+
       const rental = await Rental.create({
         UserId,
         CarId,
@@ -25,11 +53,13 @@ class RentalController {
         status: "ongoing",
       });
 
-      // Update status mobil jadi rented
       await car.update({ status: "rented" });
 
-      res.status(201).json({ message: "Car booked successfully", rental });
+      res
+        .status(201)
+        .json({ message: `Car with ID:${CarId} booked successfully` });
     } catch (error) {
+      console.log(error); // Tambahin log error buat debug
       next(error);
     }
   }

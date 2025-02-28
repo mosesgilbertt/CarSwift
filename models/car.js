@@ -20,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Name is required",
+            msg: "Name of The Car is required",
           },
           notEmpty: {
-            msg: "Name is required",
+            msg: "Name of The Car is required",
           },
         },
       },
@@ -32,10 +32,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Brand of the car is required",
+            msg: "Brand of The Car is required",
           },
           notEmpty: {
-            msg: "Brand of the car is required",
+            msg: "Brand of The Car is required",
           },
         },
       },
@@ -68,10 +68,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Image is required",
+            msg: "Image of The Car is required",
           },
           notEmpty: {
-            msg: "Image is required",
+            msg: "Image of The Car is required",
           },
         },
       },
@@ -80,10 +80,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Price is required",
+            msg: "Price of The Car is required",
           },
           notEmpty: {
-            msg: "Price is required",
+            msg: "Price of The Car is required",
           },
         },
       },

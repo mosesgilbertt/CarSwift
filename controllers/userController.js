@@ -12,6 +12,7 @@ class UserController {
         email: user.email,
       });
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }
@@ -46,15 +47,15 @@ class UserController {
       const { name, email, password } = req.body;
       const userId = req.user.id; // ID dari user yang login
 
-      let updatedData = { name, email };
-
-      if (password) {
-        hashPassword(password);
-      }
+      let updatedData = {};
+      if (name !== undefined) updatedData.name = name;
+      if (email !== undefined) updatedData.email = email;
+      if (password !== undefined) updatedData.password = hashPassword(password);
 
       const [updated] = await User.update(updatedData, {
         where: { id: userId },
         returning: true,
+        validate: true,
       });
 
       if (!updated) {
@@ -114,7 +115,9 @@ class UserController {
         throw { name: "NotFound", message: "User not found" };
       }
 
-      res.status(200).json({ message: `User role updated to ${role}` });
+      res
+        .status(200)
+        .json({ message: `User role with ID:${id} updated to ${role}` });
     } catch (error) {
       next(error);
     }

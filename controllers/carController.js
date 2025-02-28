@@ -65,35 +65,30 @@ class CarController {
 
   static async updateCarById(req, res, next) {
     try {
-      const { name, brand, year, type, image, price_per_day, status } =
-        req.body;
+      const { name, brand, year, type, image, price_per_day } = req.body;
 
       if (!name) {
-        throw { status: 400, message: "Name of Car is required" };
+        throw { status: 400, message: "Name of The Car is required" };
       }
 
       if (!brand) {
-        throw { status: 400, message: "Brand of Car is required" };
+        throw { status: 400, message: "Brand of The Car is required" };
       }
 
       if (!year) {
-        throw { status: 400, message: "Year of Car is required" };
+        throw { status: 400, message: "Year of The Car is required" };
       }
 
       if (!type) {
-        throw { status: 400, message: "Type of Car is required" };
+        throw { status: 400, message: "Type of The Car is required" };
       }
 
       if (!image) {
-        throw { status: 400, message: "Image of Car is required" };
+        throw { status: 400, message: "Image of The Car is required" };
       }
 
       if (!price_per_day) {
-        throw { status: 400, message: "Price of Car is required" };
-      }
-
-      if (!status) {
-        throw { status: 400, message: "Status of Car is required" };
+        throw { status: 400, message: "Price per Day of The Car is required" };
       }
 
       const { id } = req.params;
@@ -105,7 +100,7 @@ class CarController {
 
       await Car.update(req.body, { where: { id } });
 
-      res.json({ message: `${car.name} updated successfully` });
+      res.json({ message: `Car with ID:${car.id} updated successfully` });
     } catch (error) {
       next(error);
     }
