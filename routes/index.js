@@ -21,9 +21,9 @@ router.use("/pub", publicRouter);
 
 router.use(authentication);
 
-router.use("/admin", adminRouter);
-
 router.use("/profile", userRouter);
+
+router.use("/admin", adminRouter);
 
 router.use("/cars", carRouter);
 
