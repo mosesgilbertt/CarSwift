@@ -12,7 +12,6 @@ const { queryInterface } = require("../models/index").sequelize;
 const { hashPassword } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const { formatDateTime } = require("../helpers/dateFormatter");
-const { DATE } = require("sequelize");
 
 let access_token_admin;
 let access_token_user;
