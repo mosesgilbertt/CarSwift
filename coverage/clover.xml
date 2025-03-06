@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1740701726834" clover="3.2.0">
-  <project timestamp="1740701726834" name="All files">
+<coverage generated="1740702008614" clover="3.2.0">
+  <project timestamp="1740702008614" name="All files">
     <metrics statements="371" coveredstatements="343" conditionals="157" coveredconditionals="115" methods="37" coveredmethods="37" elements="565" coveredelements="495" complexity="0" loc="371" ncloc="371" packages="6" files="22" classes="22"/>
     <package name="CarSwift">
       <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -114,17 +114,17 @@
         <line num="40" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="41" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="42" count="3" type="stmt"/>
-        <line num="45" count="3" type="stmt"/>
-        <line num="52" count="3" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
+        <line num="44" count="3" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
         <line num="64" count="2" type="stmt"/>
-        <line num="65" count="2" type="stmt"/>
-        <line num="67" count="2" type="stmt"/>
-        <line num="69" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="70" count="1" type="stmt"/>
-        <line num="73" count="1" type="stmt"/>
-        <line num="75" count="1" type="stmt"/>
-        <line num="80" count="1" type="stmt"/>
+        <line num="66" count="2" type="stmt"/>
+        <line num="68" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
       </file>
       <file name="rentalController.js" path="D:\Hacktiv8\Materi\Phase 2\Individual Project\CarSwift\controllers\rentalController.js">
         <metrics statements="49" coveredstatements="41" conditionals="22" coveredconditionals="16" methods="4" coveredmethods="4"/>
