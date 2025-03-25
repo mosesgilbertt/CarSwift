@@ -30,7 +30,7 @@ class UserController {
       const geminiResponse = result.response.text().trim();
 
       if (geminiResponse.includes("FAKE")) {
-        throw { name: "BadRequest", message: "User data is fake" };
+        throw { name: "BadRequest", message: "Invalid user data" };
       }
 
       let profilePictureURL;

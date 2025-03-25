@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router";
 
-export const PublicLayout = () => {
+export default function PublicLayout() {
   const accessToken = localStorage.getItem("access_token");
 
   if (accessToken) {
@@ -8,4 +8,4 @@ export const PublicLayout = () => {
   }
 
   return <Outlet />;
-};
+}
