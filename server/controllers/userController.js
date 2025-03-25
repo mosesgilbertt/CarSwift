@@ -1,18 +1,65 @@
+const axios = require("axios");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const FormData = require("form-data");
 const { comparePassword, hashPassword } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const { User } = require("../models");
 
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const imggbb_api_key = process.env.IMGBB_API_KEY;
+
 class UserController {
-  static async createUser(req, res, next) {
+  static async register(req, res, next) {
     try {
-      const user = await User.create(req.body);
+      const { name, email, password } = req.body;
+      const profilePicture = req.file;
+
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+      const prompt = `
+      Detect if this user information is fake or real:
+      Name: ${name}
+      Email: ${email}
+      Respond with "FAKE" if the data is likely fake, otherwise respond with "REAL".
+      `;
+
+      const result = await model.generateContent(prompt);
+      const geminiResponse = result.response.text().trim();
+
+      if (geminiResponse.includes("FAKE")) {
+        throw { name: "BadRequest", message: "User data is fake" };
+      }
+
+      let profilePictureURL;
+      if (profilePicture) {
+        const form = new FormData();
+        form.append("image", profilePicture.buffer.toString("base64"));
+
+        const response = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${imggbb_api_key}`,
+          form,
+          {
+            headers: form.getHeaders(),
+          }
+        );
+
+        let responseData = response.data.data.url;
+        profilePictureURL = responseData.replace("ibb.co/", "ibb.co.com/");
+      }
+
+      const user = await User.create({
+        name,
+        email,
+        password,
+        profilePicture: profilePictureURL,
+      });
 
       res.status(201).json({
         name: user.name,
         email: user.email,
+        profilePicture: user.profilePicture,
       });
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }

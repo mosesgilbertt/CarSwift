@@ -57,9 +57,9 @@ class RentalController {
 
       res
         .status(201)
-        .json({ message: `Car with ID:${CarId} booked successfully` });
+        .json({ message: `Car with ID:${rental.CarId} booked successfully` });
     } catch (error) {
-      console.log(error); // Tambahin log error buat debug
+      // Tambahin log error buat debug
       next(error);
     }
   }
