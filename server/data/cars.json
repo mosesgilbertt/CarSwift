@@ -98,5 +98,205 @@
     "image": "https://i.pinimg.com/736x/ff/6b/36/ff6b36593801c1c3f17ae8304ec6caa7.jpg",
     "price_per_day": 30000000,
     "status": "available"
+  },
+  {
+    "id": 11,
+    "name": "Lamborghini Aventador",
+    "brand": "Lamborghini",
+    "year": 2021,
+    "type": "Supercar",
+    "image": "https://i.pinimg.com/736x/fe/2a/49/fe2a499c5aa980db37105c26416c1cf9.jpg",
+    "price_per_day": 25000000,
+    "status": "available"
+  },
+  {
+    "id": 12,
+    "name": "Mercedes-Benz S-Class",
+    "brand": "Mercedes-Benz",
+    "year": 2023,
+    "type": "Luxury",
+    "image": "https://i.pinimg.com/736x/cd/5e/bd/cd5ebdf951f8691291de17be88a3f01e.jpg",
+    "price_per_day": 18000000,
+    "status": "available"
+  },
+  {
+    "id": 13,
+    "name": "Porsche 911 Turbo S",
+    "brand": "Porsche",
+    "year": 2022,
+    "type": "Sports",
+    "image": "https://i.pinimg.com/736x/07/62/d2/0762d21519b45deeaee801241e1fa55f.jpg",
+    "price_per_day": 22000000,
+    "status": "available"
+  },
+  {
+    "id": 14,
+    "name": "Chevrolet Camaro",
+    "brand": "Chevrolet",
+    "year": 2021,
+    "type": "Muscle",
+    "image": "https://i.pinimg.com/736x/8f/9f/8b/8f9f8b9827a6c94456ff25ea331364de.jpg",
+    "price_per_day": 10000000,
+    "status": "available"
+  },
+  {
+    "id": 15,
+    "name": "Jeep Wrangler",
+    "brand": "Jeep",
+    "year": 2020,
+    "type": "SUV",
+    "image": "https://i.pinimg.com/736x/4e/21/02/4e21021ad086963a11d50494c542d386.jpg",
+    "price_per_day": 1200000,
+    "status": "available"
+  },
+  {
+    "id": 16,
+    "name": "Nissan GT-R",
+    "brand": "Nissan",
+    "year": 2022,
+    "type": "Sports",
+    "image": "https://i.pinimg.com/736x/b2/14/20/b214209008f958ce03874890a5d9b772.jpg",
+    "price_per_day": 20000000,
+    "status": "available"
+  },
+  {
+    "id": 17,
+    "name": "Audi R8",
+    "brand": "Audi",
+    "year": 2023,
+    "type": "Supercar",
+    "image": "https://i.pinimg.com/736x/e3/50/81/e35081b910dabb035bab210f75a6e101.jpg",
+    "price_per_day": 23000000,
+    "status": "available"
+  },
+  {
+    "id": 18,
+    "name": "Hyundai Palisade",
+    "brand": "Hyundai",
+    "year": 2022,
+    "type": "SUV",
+    "image": "https://i.pinimg.com/736x/b4/d2/60/b4d26015b4a1935c89ed2b1cecc4754a.jpg",
+    "price_per_day": 1400000,
+    "status": "available"
+  },
+  {
+    "id": 19,
+    "name": "Mazda CX-5",
+    "brand": "Mazda",
+    "year": 2021,
+    "type": "SUV",
+    "image": "https://i.pinimg.com/736x/7a/8c/8d/7a8c8d70e81cbce79cb151f0fd7e0b93.jpg",
+    "price_per_day": 1100000,
+    "status": "available"
+  },
+  {
+    "id": 20,
+    "name": "Lexus RX 500h",
+    "brand": "Lexus",
+    "year": 2023,
+    "type": "Luxury SUV",
+    "image": "https://i.pinimg.com/736x/32/1e/ae/321eaed92e0eb570c1f30ce1de414837.jpg",
+    "price_per_day": 1600000,
+    "status": "available"
+  },
+  {
+    "id": 21,
+    "name": "Kia Sportage",
+    "brand": "Kia",
+    "year": 2022,
+    "type": "SUV",
+    "image": "https://i.pinimg.com/736x/b8/2e/0e/b82e0e7b7ad88520dfa301494d35f072.jpg",
+    "price_per_day": 1200000,
+    "status": "available"
+  },
+  {
+    "id": 22,
+    "name": "Volkswagen Golf GTI",
+    "brand": "Volkswagen",
+    "year": 2023,
+    "type": "Hatchback",
+    "image": "https://i.pinimg.com/736x/89/45/14/894514510b9548eb6f4e942952e67d66.jpg",
+    "price_per_day": 1300000,
+    "status": "available"
+  },
+  {
+    "id": 23,
+    "name": "Subaru WRX",
+    "brand": "Subaru",
+    "year": 2022,
+    "type": "Sedan",
+    "image": "https://i.pinimg.com/736x/1c/f6/0d/1cf60de278831497b1598c70d2464e91.jpg",
+    "price_per_day": 1400000,
+    "status": "available"
+  },
+  {
+    "id": 24,
+    "name": "Dodge Charger",
+    "brand": "Dodge",
+    "year": 2021,
+    "type": "Muscle",
+    "image": "https://i.pinimg.com/736x/c5/c1/c7/c5c1c7139853861838ff947c29b1df1e.jpg",
+    "price_per_day": 1500000,
+    "status": "available"
+  },
+  {
+    "id": 25,
+    "name": "Jaguar F-Type",
+    "brand": "Jaguar",
+    "year": 2023,
+    "type": "Convertible",
+    "image": "https://i.pinimg.com/736x/b0/10/1d/b0101d257649812fabbe84c5ec4af27d.jpg",
+    "price_per_day": 2500000,
+    "status": "available"
+  },
+  {
+    "id": 26,
+    "name": "Mitsubishi Pajero Sport",
+    "brand": "Mitsubishi",
+    "year": 2022,
+    "type": "SUV",
+    "image": "https://i.pinimg.com/736x/de/22/32/de223226aa639e644fa6bda538eeeec8.jpg",
+    "price_per_day": 1300000,
+    "status": "available"
+  },
+  {
+    "id": 27,
+    "name": "Ford Mustang",
+    "brand": "Ford",
+    "year": 2021,
+    "type": "Muscle",
+    "image": "https://i.pinimg.com/736x/ff/5e/8c/ff5e8c04d5be157517b15ba29faf511d.jpg",
+    "price_per_day": 1700000,
+    "status": "available"
+  },
+  {
+    "id": 28,
+    "name": "Chevrolet Tahoe",
+    "brand": "Chevrolet",
+    "year": 2022,
+    "type": "SUV",
+    "image": "https://i.pinimg.com/736x/92/c2/29/92c229d921968111a6bfc4ea94bdb1be.jpg",
+    "price_per_day": 1800000,
+    "status": "available"
+  },
+  {
+    "id": 29,
+    "name": "Peugeot 3008",
+    "brand": "Peugeot",
+    "year": 2023,
+    "type": "SUV",
+    "image": "https://i.pinimg.com/736x/9f/4e/b6/9f4eb6e1bd63c3dcd13be50733f0fe66.jpg",
+    "price_per_day": 1500000,
+    "status": "available"
+  },
+  {
+    "id": 30,
+    "name": "Suzuki Jimny",
+    "brand": "Suzuki",
+    "year": 2023,
+    "type": "SUV",
+    "image": "https://i.pinimg.com/736x/53/d6/67/53d667b844f12815bb1d1551f544f835.jpg",
+    "price_per_day": 1000000,
+    "status": "available"
   }
 ]
