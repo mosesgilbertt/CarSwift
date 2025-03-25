@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import RegisterPage from "./pages/register.page";
+import PublicLayout from "./layouts/public.layout";
 import LoginPage from "./pages/login.page";
-import { PublicLayout } from "./layouts/public.layout";
+import RegisterPage from "./pages/register.page";
+import MainLayout from "./layouts/Main.layout";
 import HomePage from "./pages/home.page";
 
 function App() {
@@ -15,7 +16,9 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
         </Route>
 
-        <Route path="/" element={<HomePage />} />
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<HomePage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

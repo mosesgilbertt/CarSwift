@@ -1,4 +1,4 @@
-export const NavBar = () => {
+export default function MainNavbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -50,4 +50,4 @@ export const NavBar = () => {
       </div>
     </nav>
   );
-};
+}

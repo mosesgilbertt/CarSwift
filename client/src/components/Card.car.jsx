@@ -1,4 +1,4 @@
-export const CarCard = () => {
+export default function CardCar() {
   return (
     <div className="card" style={{ width: "15rem" }}>
       <img
@@ -21,4 +21,4 @@ export const CarCard = () => {
       </div>
     </div>
   );
-};
+}
