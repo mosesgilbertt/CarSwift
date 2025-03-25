@@ -4,6 +4,11 @@ function errorHandler(error, req, res, next) {
   let statusCode = error.status || 500;
   let message = error.message || "Internal Server Error";
 
+  if (error.name === "GoogleGenerativeAIFetchError") {
+    statusCode = 503;
+    message = error.message || "AI Error";
+  }
+
   if (
     error.name === "SequelizeValidationError" ||
     error.name === "SequelizeUniqueConstraintError"

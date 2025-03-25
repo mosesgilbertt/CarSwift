@@ -14,6 +14,9 @@ class UserController {
       const { name, email, password } = req.body;
       const profilePicture = req.file;
 
+      const tempUser = User.build({ name, email, password });
+      await tempUser.validate(); // Memicu SequelizeValidationError jika ada yang salah
+
       const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
       const prompt = `
@@ -57,7 +60,6 @@ class UserController {
       res.status(201).json({
         name: user.name,
         email: user.email,
-        profilePicture: user.profilePicture,
       });
     } catch (error) {
       next(error);
@@ -89,25 +91,39 @@ class UserController {
     }
   }
 
+  static async detailProfile(req, res, next) {
+    try {
+      const userId = req.user.id;
+
+      const user = await User.findByPk(userId);
+      if (!user) {
+        throw { name: "NotFound", message: "User not found" };
+      }
+
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async updateProfile(req, res, next) {
     try {
+      const userId = req.user.id;
       const { name, email, password } = req.body;
-      const userId = req.user.id; // ID dari user yang login
+
+      const user = await User.findByPk(userId);
+      if (!user) {
+        throw { name: "NotFound", message: "User not found" };
+      }
 
       let updatedData = {};
       if (name !== undefined) updatedData.name = name;
       if (email !== undefined) updatedData.email = email;
-      if (password !== undefined) updatedData.password = hashPassword(password);
-
-      const [updated] = await User.update(updatedData, {
-        where: { id: userId },
-        returning: true,
-        validate: true,
-      });
-
-      if (!updated) {
-        throw { name: "NotFound", message: "User not found" };
+      if (password !== undefined) {
+        updatedData.password = hashPassword(password);
       }
+
+      await user.update(updatedData);
 
       res.status(200).json({ message: "Profile updated successfully" });
     } catch (error) {
@@ -115,19 +131,20 @@ class UserController {
     }
   }
 
-  static async deleteUserById(req, res, next) {
+  static async deleteAccount(req, res, next) {
     try {
-      const { id } = req.params; // ID user yang akan dihapus
+      const { id } = req.user;
 
-      const deleted = await User.destroy({ where: { id } });
-
-      if (!deleted) {
+      const user = await User.findByPk(id);
+      if (!user) {
         throw { name: "NotFound", message: "User not found" };
       }
 
+      await user.destroy();
+
       res
         .status(200)
-        .json({ message: `User with ID:${id} deleted successfully` });
+        .json({ message: `You have successfully deleted your account` });
     } catch (error) {
       next(error);
     }
