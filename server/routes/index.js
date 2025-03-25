@@ -1,5 +1,6 @@
 const express = require("express");
 const authentication = require("../middlewares/authentication");
+const upload = require("../middlewares/uploadPhoto");
 
 const Controller = require("../controllers/index");
 const UserController = require("../controllers/userController");
@@ -14,7 +15,12 @@ const router = express.Router();
 
 router.get("/", Controller.test);
 
-router.post("/register", UserController.createUser);
+router.post(
+  "/register",
+  upload.single("profilePicture"),
+  UserController.register
+);
+
 router.post("/login", UserController.login);
 
 router.use("/pub", publicRouter);

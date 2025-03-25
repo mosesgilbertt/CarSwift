@@ -24,7 +24,12 @@ module.exports = {
       },
       role: {
         type: Sequelize.STRING,
-        allowNull: false,
+        defaultValue: "user",
+      },
+      profilePicture: {
+        type: Sequelize.STRING,
+        defaultValue:
+          "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000",
       },
       createdAt: {
         allowNull: false,
