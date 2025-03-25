@@ -3,11 +3,26 @@ const { Car } = require("../models");
 
 class PublicController {
   static async pubGetCars(req, res, next) {
-    const { type, brand, minPrice, maxPrice, page, limit, sortBy, orderBy } =
-      req.query;
+    const {
+      search,
+      type,
+      brand,
+      minPrice,
+      maxPrice,
+      page,
+      limit,
+      sortBy,
+      orderBy,
+    } = req.query;
     try {
       // FILTERING
       let whereClause = { status: "available" };
+
+      if (search) {
+        whereClause.name = {
+          [Op.iLike]: `%${search}%`,
+        };
+      }
 
       if (type) {
         whereClause.type = type;

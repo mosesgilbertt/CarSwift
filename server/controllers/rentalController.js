@@ -107,6 +107,7 @@ class RentalController {
   static async returnCar(req, res, next) {
     try {
       const { id } = req.params;
+
       const rental = await Rental.findByPk(id, { include: [{ model: Car }] });
 
       if (!rental) {
@@ -119,13 +120,11 @@ class RentalController {
         };
       }
 
-      // Update status penyewaan
-      await rental.update({ status: "returned" });
+      await rental.update({ status: "returned", returnDate: new Date() });
 
-      // Update status mobil jadi available lagi
       await rental.Car.update({ status: "available" });
 
-      const returnDateFormatted = formatDateTime(rental.returnDate);
+      const returnDateFormatted = formatDateTime(new Date());
       res.status(200).json({
         message: `${rental.Car.name} have been returned at ${returnDateFormatted}`,
       });
