@@ -45,17 +45,17 @@ module.exports = {
       })
     );
 
-    await queryInterface.bulkInsert("Rentals", [
-      {
-        UserId: 1,
-        CarId: 1,
-        rentalDate: new Date(),
-        returnDate: new Date(),
-        status: "ongoing",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    ]);
+    // await queryInterface.bulkInsert("Rentals", [
+    //   {
+    //     UserId: 1,
+    //     CarId: 1,
+    //     rentalDate: new Date(),
+    //     returnDate: new Date(),
+    //     status: "ongoing",
+    //     createdAt: new Date(),
+    //     updatedAt: new Date(),
+    //   },
+    // ]);
   },
 
   async down(queryInterface, Sequelize) {
