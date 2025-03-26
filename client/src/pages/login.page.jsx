@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
-import axios from "axios";
 import Swal from "sweetalert2";
+import https from "../helpers/https";
+import DisplayPictureForm from "../components/DisplayPicture.form";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -12,9 +13,10 @@ export default function LoginPage() {
     event.preventDefault();
 
     try {
-      const { data } = await axios.post("http://localhost:3000/login", {
-        email,
-        password,
+      const { data } = await https({
+        method: "POST",
+        url: "/login",
+        data: { email, password },
       });
 
       localStorage.setItem("access_token", data.access_token);
@@ -29,57 +31,105 @@ export default function LoginPage() {
     }
   };
 
+  async function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token: " + response.credential);
+
+    try {
+      const { data } = await https({
+        method: "POST",
+        url: "/google-login",
+        data: { googleToken: response.credential },
+      });
+
+      localStorage.setItem("access_token", data.access_token);
+
+      navigate("/");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.response.data.message,
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      navigate("/");
+    }
+
+    google.accounts.id.initialize({
+      client_id:
+        "742661070073-csof70ph3l2vctkqu7c9i6iss1tgdqhr.apps.googleusercontent.com",
+      callback: handleCredentialResponse,
+    });
+
+    google.accounts.id.renderButton(document.getElementById("google-btn"), {
+      theme: "outline",
+      size: "large",
+    });
+
+    google.accounts.id.prompt();
+  }, []);
+
   return (
-    <section
-      className="w-100 d-flex align-items-center"
-      style={{ height: "100vh" }}
-    >
-      <div className="w-50 h-100 overflow-hidden">
-        <img
-          className="h-100 object-fit-cover"
-          src="https://i.pinimg.com/736x/21/1b/52/211b52f957def0be9eefd7b6aaaeb9b5.jpg"
-        />
-      </div>
+    <section className="d-flex align-items-center vh-100 bg-light">
+      <div className="container">
+        <div className="row justify-content-center shadow-lg rounded overflow-hidden bg-white">
+          <DisplayPictureForm />
 
-      <div className="w-50">
-        <div className="w-50 m-auto">
-          <h1 className="my-5 text-center">Car Swift</h1>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="exampleInputEmail1" className="form-label">
-                Email address
-              </label>
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-              />
-            </div>
+          <div className="col-md-6 p-5 d-flex flex-column justify-content-center">
+            <h2 className="text-center mb-4 fw-bold text text-uppercase display-4">
+              Car Swift
+            </h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="email" className="fw-semibold">
+                  Email <span className="text-danger">*</span>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
 
-            <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
-                Password
-              </label>
-              <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                className="form-control"
-                id="exampleInputPassword1"
-              />
-            </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="fw-semibold">
+                  Password <span className="text-danger">*</span>
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
 
-            <button type="submit" className="btn btn-primary w-100">
-              Login
-            </button>
-          </form>
+              <button
+                type="submit"
+                className="btn btn-lg btn-primary rounded-pill w-100 p-2"
+              >
+                Login
+              </button>
+            </form>
 
-          <p className="my-3">
-            New here? <Link to="/register">Create an account!</Link>
-          </p>
+            <div className="text-center fw-bold my-3">OR</div>
+            <div
+              id="google-btn"
+              className="d-flex justify-content-center mb-3"
+            ></div>
+
+            <p className="text-center">
+              New here?{" "}
+              <Link to="/register" className="text-primary">
+                Create an account!
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </section>
