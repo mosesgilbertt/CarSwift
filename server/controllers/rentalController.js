@@ -4,8 +4,11 @@ const { Rental, Car, User } = require("../models");
 class RentalController {
   static async bookCar(req, res, next) {
     try {
-      const { CarId, rentalDate, returnDate } = req.body;
+      const { id } = req.params;
+      const { rentalDate, returnDate } = req.body;
       const UserId = req.user.id;
+
+      const CarId = id;
 
       if (!CarId) {
         throw { name: "BadRequest", message: "Car is required" };
@@ -59,12 +62,10 @@ class RentalController {
         .status(201)
         .json({ message: `Car with ID:${rental.CarId} booked successfully` });
     } catch (error) {
-      // Tambahin log error buat debug
       next(error);
     }
   }
 
-  // Customer melihat daftar penyewaan mereka
   static async getUserRentals(req, res, next) {
     try {
       const rentals = await Rental.findAll({

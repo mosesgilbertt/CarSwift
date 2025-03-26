@@ -20,6 +20,7 @@ export default function LoginPage() {
       });
 
       localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("role", data.role);
 
       navigate("/");
     } catch (error) {
@@ -40,6 +41,7 @@ export default function LoginPage() {
       });
 
       localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("role", data.role);
 
       navigate("/");
     } catch (error) {

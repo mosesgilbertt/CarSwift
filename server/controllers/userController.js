@@ -85,9 +85,9 @@ class UserController {
         throw { status: 401, message: "Email or Password is incorrect" };
       }
 
-      const access_token = signToken({ id: user.id });
+      const access_token = signToken({ id: user.id, role: user.role });
 
-      res.json({ access_token });
+      res.json({ access_token, role: user.role });
     } catch (error) {
       next(error);
     }
@@ -116,9 +116,9 @@ class UserController {
         },
       });
 
-      const access_token = signToken({ id: user.id });
+      const access_token = signToken({ id: user.id, role: user.role });
 
-      res.json({ access_token });
+      res.json({ access_token, role: user.role });
     } catch (error) {
       next(error);
     }

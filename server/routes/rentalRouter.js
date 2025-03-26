@@ -4,10 +4,10 @@ const isAdmin = require("../middlewares/authorization");
 
 const rentalRouter = express.Router();
 
-rentalRouter.post("/", RentalController.bookCar);
-
 // Admin melihat semua penyewaan
 rentalRouter.get("/", isAdmin, RentalController.getAllRentals);
+
+rentalRouter.post("/:id", RentalController.bookCar);
 
 // Mengembalikan mobil
 rentalRouter.patch("/:id/return", RentalController.returnCar);

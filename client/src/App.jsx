@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import PublicLayout from "./layouts/Public.layout";
 import MainLayout from "./layouts/Main.layout";
-import HomePage from "./pages/MainHome.page";
 import RegisterPage from "./pages/register.page";
 import LoginPage from "./pages/login.page";
 import PubHomePage from "./pages/PubHome.page";
 import PubCarDetailPage from "./pages/PubCarDetail.page";
+import MainHomePage from "./pages/MainHome.page";
+import CarBookingForm from "./pages/Rental.page";
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
         </Route>
 
         <Route element={<MainLayout />}>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<MainHomePage />} />
+          <Route path="/profile" element={<h1>Profile</h1>} />
+          <Route path="/rentals/:id" element={<CarBookingForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
