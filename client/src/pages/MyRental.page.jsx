@@ -65,7 +65,7 @@ export default function MyRentals() {
 
   return (
     <div className="container mt-5 pt-5">
-      <h2 className="text-center mb-4">My Rentals</h2>
+      <h2 className="text-center mb-4">My Rental List</h2>
       <div className="row">
         {rentals.map((rental) => (
           <div key={rental.id} className="col-md-4">
@@ -80,7 +80,7 @@ export default function MyRentals() {
                 {new Date(rental.returnDate).toLocaleString()}
               </p>
               <p>
-                <strong>Status:</strong>
+                <strong>Status : </strong>
                 {rental.status === "ongoing" ? (
                   <span className="badge bg-warning text-dark"> Ongoing </span>
                 ) : (
