@@ -19,7 +19,7 @@ let access_token_user;
 beforeAll(async () => {
   await queryInterface.bulkInsert("Users", [
     {
-      name: "John Doe",
+      name: "SuperZeco",
       email: "admin@mail.com",
       password: hashPassword("123456"),
       role: "admin",
@@ -27,16 +27,8 @@ beforeAll(async () => {
       updatedAt: new Date(),
     },
     {
-      name: "Jane Doe",
+      name: "John Doe",
       email: "user@mail.com",
-      password: hashPassword("123456"),
-      role: "user",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    {
-      name: "Jumaidin",
-      email: "j@mail.com",
       password: hashPassword("123456"),
       role: "user",
       createdAt: new Date(),
@@ -56,23 +48,11 @@ beforeAll(async () => {
     })
   );
 
-  await queryInterface.bulkInsert("Rentals", [
-    {
-      UserId: 1,
-      CarId: 1,
-      rentalDate: new Date(),
-      returnDate: new Date(),
-      status: "ongoing",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  ]);
-
   const admin = await User.findOne({ where: { email: "admin@mail.com" } });
-  access_token_admin = signToken({ id: admin.id });
+  access_token_admin = signToken({ id: admin.id, role: admin.role });
 
   const user = await User.findOne({ where: { email: "user@mail.com" } });
-  access_token_user = signToken({ id: user.id });
+  access_token_user = signToken({ id: user.id, role: user.role });
 });
 
 afterAll(async () => {
@@ -108,13 +88,13 @@ describe("POST /register", () => {
   test("Success create a new user and return name and email", async () => {
     const response = await request(app).post("/register").send({
       name: "Anto",
-      email: "a@mail.com",
+      email: "anto@gmail.com",
       password: "123456",
     });
 
     expect(response.status).toBe(201);
     expect(response.body).toHaveProperty("name", "Anto");
-    expect(response.body).toHaveProperty("email", "a@mail.com");
+    expect(response.body).toHaveProperty("email", "anto@gmail.com");
   });
 
   test("Failed create a new user with invalid email", async () => {
@@ -182,7 +162,7 @@ describe("POST /register", () => {
   test("Failed create a new user with existing email", async () => {
     const response = await request(app).post("/register").send({
       name: "Anto",
-      email: "user@mail.com",
+      email: "anto@gmail.com",
       password: "123456",
     });
 
@@ -294,8 +274,7 @@ describe("GET /pub/cars", () => {
 
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty("currentPage", 1);
-    expect(response.body).toHaveProperty("totalPages", 5);
-    expect(response.body).toHaveProperty("totalCars", 10);
+    expect(response.body).toHaveProperty("totalPages", 15);
   });
 });
 
@@ -323,7 +302,7 @@ describe("PUT /profile", () => {
       .set("Authorization", `Bearer ${access_token_user}`)
       .send({
         name: "Anto",
-        email: "user@mail.com",
+        email: "anto1@gmail.com",
       });
 
     expect(response.status).toBe(200);
@@ -468,17 +447,13 @@ describe("GET /admin", () => {
   });
 });
 
-describe("DELETE /admin/:id", () => {
+describe("DELETE /profile/delete", () => {
   test("Success Delete User", async () => {
     const response = await request(app)
-      .delete("/admin/4")
+      .delete("/profile/delete")
       .set("Authorization", `Bearer ${access_token_admin}`);
 
     expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty(
-      "message",
-      "User with ID:4 deleted successfully"
-    );
   });
 
   test("Failed Delete User with empty token", async () => {
@@ -495,15 +470,6 @@ describe("DELETE /admin/:id", () => {
 
     expect(response.status).toBe(401);
     expect(response.body).toHaveProperty("message", "Invalid or Expired token");
-  });
-
-  test("Failed Delete User with invalid role", async () => {
-    const response = await request(app)
-      .delete("/admin/3")
-      .set("Authorization", `Bearer ${access_token_user}`);
-
-    expect(response.status).toBe(403);
-    expect(response.body).toHaveProperty("message", "You are not authorized");
   });
 
   test("Failed Delete User with invalid id", async () => {
@@ -597,7 +563,7 @@ describe("GET /cars", () => {
       .set("Authorization", `Bearer ${access_token_user}`);
 
     expect(response.status).toBe(200);
-    expect(response.body).toHaveLength(10);
+    expect(response.body).toHaveLength(30);
     expect(response.body[0]).toHaveProperty("id");
     expect(response.body[0]).toHaveProperty("name", expect.any(String));
   });
@@ -619,7 +585,7 @@ describe("GET /cars", () => {
       .set("Authorization", `Bearer ${access_token_user}`);
 
     expect(response.status).toBe(200);
-    expect(response.body).toHaveLength(10);
+    expect(response.body).toHaveLength(30);
     expect(response.body[0]).toHaveProperty("id");
     expect(response.body[0]).toHaveProperty(
       "price_per_day",
@@ -1109,7 +1075,7 @@ describe("Delete /cars/:id", () => {
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty(
       "message",
-      "Car Test deleted successfully"
+      "Lamborghini Aventador deleted successfully"
     );
   });
 

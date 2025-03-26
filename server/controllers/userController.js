@@ -17,7 +17,7 @@ class UserController {
       const profilePicture = req.file;
 
       const tempUser = User.build({ name, email, password });
-      await tempUser.validate(); // Memicu SequelizeValidationError jika ada yang salah
+      await tempUser.validate();
 
       const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
