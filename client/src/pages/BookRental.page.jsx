@@ -50,7 +50,9 @@ export default function CarBookingForm() {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label fw-bold">Rental Date</label>
+            <label className="form-label fw-bold">
+              Start Date <span className="text-danger">*</span>
+            </label>
             <input
               type="date"
               className="form-control"
@@ -61,7 +63,9 @@ export default function CarBookingForm() {
           </div>
 
           <div className="mb-3">
-            <label className="form-label fw-bold">Return Date</label>
+            <label className="form-label fw-bold">
+              Return Date <span className="text-danger">*</span>
+            </label>
             <input
               type="date"
               className="form-control"
