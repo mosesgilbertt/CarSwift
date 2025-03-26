@@ -2,17 +2,12 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router";
 
 export default function MainNavbar() {
-  const [role, setRole] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setRole(localStorage.getItem("role"));
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("role");
-    navigate("/login"); // Redirect ke halaman login setelah logout
+    navigate("/login");
   };
 
   return (
@@ -20,7 +15,7 @@ export default function MainNavbar() {
       <div className="container">
         <NavLink
           className="navbar-brand fw-bold fs-3 text-white"
-          to="/pub/cars"
+          to="/admin/cars"
         >
           🔑 CAR SWIFT
         </NavLink>
@@ -40,59 +35,28 @@ export default function MainNavbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <NavLink
-                className="nav-link text-white fw-bold px-3"
-                to="/pub/cars"
-              >
-                Car List
+              <NavLink className="nav-link text-white fw-bold px-3" to="/">
+                Home
               </NavLink>
             </li>
 
-            {/* Jika Role = Admin, Tambahkan Dashboard */}
-            {role === "admin" && (
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link text-white fw-bold px-3"
-                  to="/admin/dashboard"
-                >
-                  Dashboard
-                </NavLink>
-              </li>
-            )}
+            <li className="nav-item">
+              <NavLink
+                className="nav-link text-white fw-bold px-3"
+                to="/my-rentals"
+              >
+                My Rentals
+              </NavLink>
+            </li>
 
-            {/* Jika Belum Login, Tampilkan Login & Register */}
-            {!role && (
-              <>
-                <li className="nav-item">
-                  <NavLink
-                    className="nav-link text-white fw-bold px-3"
-                    to="/login"
-                  >
-                    Login
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
-                    className="nav-link text-white fw-bold px-3"
-                    to="/register"
-                  >
-                    Register
-                  </NavLink>
-                </li>
-              </>
-            )}
-
-            {/* Jika Sudah Login, Tampilkan Logout */}
-            {role && (
-              <li className="nav-item">
-                <button
-                  className="btn btn-outline-light fw-bold px-3"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </li>
-            )}
+            <li className="nav-item">
+              <button
+                className="btn btn-outline-danger fw-bold px-3"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </li>
           </ul>
         </div>
       </div>
