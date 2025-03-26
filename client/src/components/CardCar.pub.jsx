@@ -1,4 +1,4 @@
-export default function CardCar() {
+export default function CarCardPub() {
   return (
     <div className="card" style={{ width: "15rem" }}>
       <img

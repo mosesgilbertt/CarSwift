@@ -1,4 +1,5 @@
 import { Navigate, Outlet } from "react-router";
+import PubNavbar from "../components/Navbar.pub";
 
 export default function PublicLayout() {
   const accessToken = localStorage.getItem("access_token");
@@ -7,5 +8,11 @@ export default function PublicLayout() {
     return <Navigate to="/" />;
   }
 
-  return <Outlet />;
+  return (
+    <>
+      <PubNavbar />
+
+      <Outlet />
+    </>
+  );
 }

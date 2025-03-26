@@ -58,7 +58,7 @@ export default function RegisterPage() {
 
           <div className="col-md-6 p-5 d-flex flex-column justify-content-center">
             <h2 className="text-center mb-4 fw-bold text text-uppercase display-4">
-              Car Swift
+              🔑 CAR SWIFT
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">

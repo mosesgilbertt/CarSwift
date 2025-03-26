@@ -32,8 +32,6 @@ export default function LoginPage() {
   };
 
   async function handleCredentialResponse(response) {
-    console.log("Encoded JWT ID token: " + response.credential);
-
     try {
       const { data } = await https({
         method: "POST",
@@ -80,7 +78,7 @@ export default function LoginPage() {
 
           <div className="col-md-6 p-5 d-flex flex-column justify-content-center">
             <h2 className="text-center mb-4 fw-bold text text-uppercase display-4">
-              Car Swift
+              🔑 CAR SWIFT
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
