@@ -1,9 +1,11 @@
 const axios = require("axios");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { OAuth2Client } = require("google-auth-library");
 const FormData = require("form-data");
 const { comparePassword, hashPassword } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const { User } = require("../models");
+const { where } = require("sequelize");
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const imggbb_api_key = process.env.IMGBB_API_KEY;
@@ -82,6 +84,37 @@ class UserController {
       if (!isValidPassword) {
         throw { status: 401, message: "Email or Password is incorrect" };
       }
+
+      const access_token = signToken({ id: user.id });
+
+      res.json({ access_token });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async googleLogin(req, res, next) {
+    try {
+      const { googleToken } = req.body;
+
+      const client = new OAuth2Client();
+
+      const ticket = await client.verifyIdToken({
+        idToken: googleToken,
+        audience:
+          "742661070073-csof70ph3l2vctkqu7c9i6iss1tgdqhr.apps.googleusercontent.com",
+      });
+      const payload = ticket.getPayload();
+
+      const [user] = await User.findOrCreate({
+        where: { email: payload.email },
+        defaults: {
+          email: payload.email,
+          name: payload.name,
+          password: `@+${Math.random()}+${payload.picture}123+${new Date()}`,
+          role: "user",
+        },
+      });
 
       const access_token = signToken({ id: user.id });
 

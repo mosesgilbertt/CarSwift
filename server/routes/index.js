@@ -23,6 +23,8 @@ router.post(
 
 router.post("/login", UserController.login);
 
+router.post("/google-login", UserController.googleLogin);
+
 router.use("/pub", publicRouter);
 
 router.use(authentication);
