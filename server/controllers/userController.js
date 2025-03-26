@@ -164,6 +164,45 @@ class UserController {
     }
   }
 
+  static async updateProfilePicture(req, res, next) {
+    try {
+      const UserId = req.user.id;
+      const profilePicture = req.file;
+
+      if (!profilePicture) {
+        throw { name: "BadRequest", message: "No profile picture uploaded" };
+      }
+
+      const user = await User.findByPk(UserId);
+      if (!user) {
+        throw { name: "NotFound", message: "User not found" };
+      }
+
+      const form = new FormData();
+      form.append("image", profilePicture.buffer.toString("base64"));
+
+      const response = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${imggbb_api_key}`,
+        form,
+        { headers: form.getHeaders() }
+      );
+
+      const profilePictureURL = response.data.data.url.replace(
+        "ibb.co/",
+        "ibb.co.com/"
+      );
+
+      await user.update({ profilePicture: profilePictureURL });
+
+      res.status(200).json({
+        message: "Profile picture updated successfully",
+        profilePictureURL,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async deleteAccount(req, res, next) {
     try {
       const { id } = req.user;

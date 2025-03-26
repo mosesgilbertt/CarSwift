@@ -8,6 +8,8 @@ import PubCarDetailPage from "./pages/PubCarDetail.page";
 import MainHomePage from "./pages/MainHome.page";
 import CarBookingForm from "./pages/BookRental.page";
 import MyRentals from "./pages/MyRental.page";
+import Profile from "./pages/Profile.page";
+import UpdateProfile from "./pages/UpdateProfle.page";
 
 function App() {
   return (
@@ -24,7 +26,8 @@ function App() {
           <Route path="/" element={<MainHomePage />} />
           <Route path="/rentals/:id" element={<CarBookingForm />} />
           <Route path="/my-rentals" element={<MyRentals />} />
-          <Route path="/profile" element={<h1>Profile</h1>} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/update" element={<UpdateProfile />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -13,10 +13,7 @@ export default function MainNavbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-dark shadow-lg fixed-top">
       <div className="container">
-        <NavLink
-          className="navbar-brand fw-bold fs-3 text-white"
-          to="/admin/cars"
-        >
+        <NavLink className="navbar-brand fw-bold fs-3 text-white" to="/">
           🔑 CAR SWIFT
         </NavLink>
 
@@ -49,13 +46,49 @@ export default function MainNavbar() {
               </NavLink>
             </li>
 
-            <li className="nav-item">
-              <button
-                className="btn btn-outline-danger fw-bold px-3"
-                onClick={handleLogout}
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle d-flex align-items-center"
+                role="button"
+                data-bs-toggle="dropdown"
               >
-                Logout
-              </button>
+                <img
+                  className="rounded-circle"
+                  src="https://i.pinimg.com/736x/76/05/0c/76050c7dc0c0727c56e5431dfb1dd143.jpg"
+                  alt="profile"
+                  style={{
+                    width: "2.1rem",
+                    height: "2.1rem",
+                    border: "2px solid white",
+                  }}
+                />
+              </a>
+
+              <ul
+                className={
+                  "dropdown-menu dropdown-menu-end bg-dark border-0 shadow-lg"
+                }
+              >
+                <li>
+                  <NavLink
+                    className="dropdown-item text-light fw-bold"
+                    to="/profile"
+                  >
+                    Profile
+                  </NavLink>
+                </li>
+                <li>
+                  <hr className="dropdown-divider bg-secondary" />
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item text-danger fw-bold"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -63,6 +96,16 @@ export default function MainNavbar() {
 
       <style>
         {`
+        .dropdown-menu {
+          min-width: 8rem;
+          text-align: center;
+        }
+        .dropdown-item {
+          transition: all 0.3s ease-in-out;
+        }
+        .dropdown-item:hover {
+          background-color: rgba(255, 255, 255, 0.1) !important;
+        }
         .navbar-nav .nav-link {
           transition: all 0.3s ease-in-out;
         }
