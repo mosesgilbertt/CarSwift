@@ -72,7 +72,7 @@ export default function MyRentals() {
             <div className="card shadow-sm p-3">
               <h5>{rental.Car.name}</h5>
               <p>
-                <strong>Rental Date:</strong>{" "}
+                <strong>Start Date:</strong>{" "}
                 {new Date(rental.rentalDate).toLocaleString()}
               </p>
               <p>
