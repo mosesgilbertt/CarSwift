@@ -5,7 +5,7 @@ export default function MainLayout() {
   const accessToken = localStorage.getItem("access_token");
 
   if (!accessToken) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/pub/cars" />;
   }
 
   return (

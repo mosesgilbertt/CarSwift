@@ -82,7 +82,7 @@ export default function PubHomePage() {
           sortBy,
           orderBy,
           page,
-          limit: 12,
+          limit: 6,
         },
       });
 
