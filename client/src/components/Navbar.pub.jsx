@@ -33,17 +33,19 @@ export default function PubNavbar() {
                 Car List
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link text-white fw-bold px-3" to="/login">
-                Login
-              </NavLink>
-            </li>
+
             <li className="nav-item">
               <NavLink
                 className="nav-link text-white fw-bold px-3"
                 to="/register"
               >
                 Register
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink className="nav-link text-white fw-bold px-3" to="/login">
+                Login
               </NavLink>
             </li>
           </ul>
