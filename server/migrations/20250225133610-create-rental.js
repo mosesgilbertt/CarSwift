@@ -16,6 +16,8 @@ module.exports = {
           model: "Users",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       CarId: {
         type: Sequelize.INTEGER,
@@ -24,6 +26,8 @@ module.exports = {
           model: "Cars",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       rentalDate: {
         type: Sequelize.DATE,
