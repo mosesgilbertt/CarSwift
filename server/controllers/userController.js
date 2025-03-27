@@ -32,7 +32,11 @@ class UserController {
       const geminiResponse = result.response.text().trim();
 
       if (geminiResponse.includes("FAKE")) {
-        throw { name: "BadRequest", message: "Invalid user data" };
+        throw {
+          name: "BadRequest",
+          message:
+            "We have detected inconsistencies in the information you provided. To ensure the accuracy and integrity of our system, please review and verify your data.",
+        };
       }
 
       let profilePictureURL;

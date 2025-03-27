@@ -98,7 +98,7 @@ export default function UpdateProfile() {
 
       setUser((prev) => ({
         ...prev,
-        profilePicture: response.data.profilePictureURL, // Update gambar baru
+        profilePicture: response.data.profilePictureURL,
       }));
     } catch (error) {
       console.log(error);
