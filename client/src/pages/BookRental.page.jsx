@@ -26,7 +26,7 @@ export default function CarBookingForm() {
       Swal.fire({
         icon: "success",
         title: "Booking Success",
-        text: response.data.message,
+        text: "Car has been booked successfully",
       });
 
       navigate("/");

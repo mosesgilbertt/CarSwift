@@ -1,37 +1,18 @@
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
-import https from "../helpers/https";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProfileUser, logout } from "../store/slices/userSlice";
 import Swal from "sweetalert2";
+import https from "../helpers/https";
 
 export default function Profile() {
   const navigate = useNavigate();
-  const [user, setUser] = useState("");
+  const dispatch = useDispatch();
+  const { data: user, loading, error } = useSelector((state) => state.user);
 
   useEffect(() => {
-    fetchProfileUser();
-  }, []);
-
-  async function fetchProfileUser() {
-    try {
-      const response = await https({
-        method: "GET",
-        url: "/profile",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      });
-
-      setUser(response.data);
-    } catch (error) {
-      console.log(error);
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.response.data.message,
-      });
-    }
-  }
+    dispatch(fetchProfileUser());
+  }, [dispatch]);
 
   async function handleDeleteAccount() {
     const confirmation = await Swal.fire({
@@ -56,10 +37,9 @@ export default function Profile() {
 
         Swal.fire("Deleted!", "Your account has been deleted.", "success");
 
-        localStorage.removeItem("access_token");
+        dispatch(logout());
         navigate("/pub/cars");
       } catch (error) {
-        console.log(error);
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -69,6 +49,9 @@ export default function Profile() {
     }
   }
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p className="text-danger">{error}</p>;
+
   return (
     <div className="container mt-5 pt-5">
       <div className="row">
@@ -77,16 +60,16 @@ export default function Profile() {
             <div className="card-body text-center">
               <img
                 src={
-                  user.profilePicture ||
+                  user?.profilePicture ||
                   "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000"
                 }
                 alt="Profile"
                 className="rounded-circle mb-3"
                 style={{ width: "100px", height: "100px" }}
               />
-              <h3>{user.name}</h3>
-              <p className="text-muted">{user.email}</p>
-              <p className="fw-bold">Role : {user.role}</p>
+              <h3>{user?.name}</h3>
+              <p className="text-muted">{user?.email}</p>
+              <p className="fw-bold">Role : {user?.role}</p>
 
               <button
                 className="btn btn-outline-dark mt-3"
