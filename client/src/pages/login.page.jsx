@@ -60,7 +60,7 @@ export default function LoginPage() {
 
     google.accounts.id.initialize({
       client_id:
-        "742661070073-csof70ph3l2vctkqu7c9i6iss1tgdqhr.apps.googleusercontent.com",
+        "359693594877-bsvcec6de7j7qeepfljhtqkq7u04mu3r.apps.googleusercontent.com",
       callback: handleCredentialResponse,
     });
 
