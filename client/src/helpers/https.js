@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const https = axios.create({
-  baseURL: "http://car-rent.superzeco.site/",
+  baseURL: "https://car-swift.superzeco.site",
 });
 
 export default https;
